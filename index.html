@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<!--
+    
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <script src="js/jquery-1.12.0.min.js"></script>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>store_ApnaBazaar APP</title>
+        <link rel="apple-touch-icon" href="icon.png">
+    </head>
+    <body>   
+        <div class="container" id="container">
+            <div class="video loader-div">
+                <div class="header-language-background">
+                  <div class="header-language-container">
+                    <div class="header-main-part">
+                      <div class="header-main-inner-sects">
+                        store_ApnaBazaar
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="container-offline" style="display:none">
+                    <h2>No connection</h2>
+                    <span>
+                        Please check your internet connection.<br />
+                        <a href="" class="offline-refresh-button">Refresh</a>
+                    </span>
+                </div> 
+                <div class="loading_mask as_abs" id="load_light">
+                    <div class="loading_image">
+                            <!--<img alt="loading your required product" src="img/loading_p.gif">-->
+                            <span> Loading... Please wait </span>
+                    </div>
+                </div>
+                <div class="Offline-app-login-window" style="display:none;">
+                    <div class="app-initialise-already">
+                  <!--  <div class="continue-with-current-window" style="display:none;">
+                            <button class="fb-login-in-app" onClick="connectCurrentSession()">Continue with Current Session</button> <br /><br /> OR <br /><br />
+                            <button class="fb-login-in-app-new" onClick="connectNewSession()">New Session</button> <br /><br />
+                        </div>-->
+                         <div class="continue-with-current-window" style="display:none">
+                            <div class="sa_wrapper">
+                            <div class="sa_wrapper_inner">
+                            <div class="app_logo"><img src="img/logo.png" /></div>
+                            <div class="app_btn"><button class="curr_sion" onClick="connectCurrentSession()">Continue with Current Session</button></div>
+                            <div class="app_or"><img src="img/or.png" alt="or" /></div>
+                            <div class="app_btn"><button class="new_sion" onClick="connectNewSession()">New Session</button></div>
+                            </div>
+                            </div>                            
+                        </div>  
+                        <div class="app-initialise-first" style="display:none;">
+                            <div class="top-slide-with-linking">
+                                <a id="login-access-link" class="active-top-slide-linking" href="javascript::void();" style="color:#ff9900; text-decoration:underline;font-size:12px; padding:10px 0 0 10px">Sign In</a>
+                                <a id="register-link" href="javascript::void();" style="color:#ff9900; text-decoration:underline;font-size:12px; padding:10px 0 0 10px">New User</a>
+                                <a id="forgot-password-link" href="javascript::void();" style="color:#ff9900; text-decoration:underline;font-size:12px; padding:10px 0 0 10px">Forgot Password</a>
+                            
+                            </div> 
+                            <div class="continue-with-current-window-container">
+                            <button class="fb-login-in-app" onClick="connectSocialLogin()">Facebook Login</button> <br /><br /><br /> OR
+                            <form id="login-access-form" method="post" name="login-access-form">
+                              <input type="hidden" name="form_type" value="signin" />
+                              <input type="email" name="email" id="email" value="" placeholder="Email Address" required><br />
+                              <input type="password" placeholder="Password" name="password" id="password" required><br /><br />
+                              <button id="submit" name="submit" title="sigin"  class="button procedd-account" type="button" onClick="connectByEmail()"><span><span>Submit</span></span></button>
+                            </form>
+                            <form id="forgot-password-form" method="post" name="forgot-password-form" style="display:none;">
+                              <input type="hidden" name="form_type" value="forgot-password" />
+                              <input type="email" name="email" id="email_f" value="" placeholder="Email Address" required><br />
+                              <button id="submit" name="submit" title="forgot-password" class="button fgt-psw" type="button" onClick="sendPasswordByEmail()"><span><span>Submit</span></span></button>
+                            </form>
+                            <form id="register-form" method="post" name="register-form" style="display:none;">
+                              <input type="hidden" name="form_type" value="register" />
+                              <input type="text" name="firstname" id="firstname_r" value="" placeholder="First Name" required><br />
+                              <input type="text" name="lastname" id="lastname_r" value="" placeholder="Last Name" required><br />
+                              <input type="tel" name="mobile" id="mobile_r" value="" placeholder="Mobile Number" required maxlength="10"><br />
+                              <input type="email" name="email" id="email_r" value="" placeholder="Email Address" required><br />
+                              <input type="password" name="password" placeholder="Password" id="password_r" required=""><br />
+                              <input type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password_r" required=""><br />
+                              <button id="submit" name="submit" title="forgot-password" class="button proceed-to-rgstr" type="button" onClick="registerByEmail()"><span><span>Submit</span></span></button>
+                            </form>
+                            <div class="progress-bar-validation" style="display:none;"><img alt="loading your required product" src="img/loading_p.gif"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <iframe frameborder="0" id="MyIFrame" class="video loader-iframe"></iframe>       
+
+        </div>
+       
+        <script type="text/javascript" src="cordova.js"></script>  
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            var app_version='1.2.1';
+            
+            var is_notyfy=false;
+			document.addEventListener("deviceready", onDeviceReady, false);
+			var db = window.openDatabase("store_ApnaBazaar_DB", "1.0", "Just a store_ApnaBazaar DB", 200000);
+			var pushNotification;
+			function getDeviceProperty()
+			{
+				return device;           
+			}
+			
+			function onDeviceReady() {
+				checkConnection();
+				document.addEventListener("offline", onOffline, false);
+				db.transaction(populateDB, errorCB, successCB);
+				
+				//getDeviceId(456);
+				//window.localStorage.setItem("deviceId", '460');
+				//alert('progress-bar-validation');
+				//isDeviceExistInDB('460');
+				$('#load_light').hide();
+				$('.Offline-app-login-window').show();
+				
+				
+				var push = PushNotification.init({
+					"android" : {
+						"senderID" : "849160516925",
+						"icon" : "phonegap",
+						"iconColor" : "blue"
+					},
+					"ios" : {
+						"alert" : "true",
+						"badge" : "true",
+						"sound" : "true"
+					},
+					"windows" : {}
+				});
+				
+				
+				push.on('registration', function(data) {
+					
+					var deviceId = data.registrationId;
+					
+					window.localStorage.setItem("deviceId", deviceId);
+					
+					
+					var currentdate = new Date(); 
+					var datetime = currentdate.getFullYear() + "-"
+						                + (currentdate.getMonth()+1)  + "-" 
+						                + currentdate.getDate() + " "  
+						                + currentdate.getHours() + ":"  
+						                + currentdate.getMinutes() + ":" 
+						                + currentdate.getSeconds();
+					window.localStorage.setItem("datetime", datetime);
+					var deviceInfo=getDeviceProperty();
+					var device_os=deviceInfo.platform;
+					var device_os_version=deviceInfo.version;
+					var device_manufacture=deviceInfo.manufacturer;
+					var device_model=deviceInfo.model;
+					var device_uuid=deviceInfo.uuid;
+					$.ajax({
+						type : 'GET',
+						url : 'http://52.66.140.24/ps22/store_ApnaBazaar/app_device_info.php',
+						dataType : 'jsonp',
+						async : false,
+						jsonpCallback : 'jsoncallback',
+						crossDomain : true,
+						data : {
+							deviceId : deviceId,
+							device_os :device_os,
+							device_os_version : device_os_version,
+							device_manufacture :device_manufacture,
+							device_model : device_model,
+							currentdate : datetime,
+							app_version : app_version,
+							device_uuid : device_uuid
+						},
+						cache : false,
+					});
+				});
+				push.on('notification', function(data) {
+					console.log(data.message);
+					
+				});
+				push.on("error", function(e) {
+				    alert(JSON.stringify(e));
+				});
+				
+				var deviceId1 = window.localStorage.getItem("deviceId");
+				
+				isDeviceExistInDB(deviceId1);
+				$('.device-ready').hide();
+				$('.loader-div').show();
+			}
+
+			function onOffline() {
+				// Handle the offline event
+				$(".loader-div").show();
+				$('.container-offline').show();
+				$(".loading_mask").hide();
+				$(".Offline-app-login-window").hide();
+				$('.loader-iframe').hide();
+
+			}
+
+			function getDeviceId(deviceId, email, password) {//alert(deviceId);
+				db.transaction(function(tx) {
+
+					//create table
+					//tx.executeSql('DROP TABLE IF EXISTS reg_users');
+					tx.executeSql("CREATE TABLE IF NOT EXISTS reg_users (id integer primary key, device_id text, email text, password text, data_num integer)", [], function(tx, res) {
+
+						//retrieve data
+						tx.executeSql("SELECT * FROM reg_users WHERE device_id = ? AND email = ?", [deviceId, email], function(tx, res) {
+							if(res.rows.length > 0) {
+								$('.continue-with-current-window').show();
+								$('.app-initialise-first').hide();
+							} else {
+								$('.continue-with-current-window').hide();
+								$('.app-initialise-first').show();
+								//insert data
+								tx.executeSql("INSERT INTO reg_users (device_id, email, password) VALUES (?,?,?)", [deviceId, email, password], function(tx, res) {
+								});
+							}
+						})
+					});
+				}, function(err) {
+
+					//errors for all transactions are reported here
+					alert("Error: " + err.message)
+
+				});
+			}
+
+			//create table and insert some record
+			function populateDB(tx) {
+				//tx.executeSql('DROP TABLE IF EXISTS reg_users');
+				tx.executeSql('CREATE TABLE IF NOT EXISTS reg_users (id integer primary key, device_id text, email text, password text, data_num integer)');
+			}
+
+			//function will be called when an error occurred
+			function errorCB(err) {
+				alert("Error processing SQL: " + err.code);
+			}
+
+			//function will be called when process succeed
+			function successCB() {
+				//alert("successDB!");
+				//db.transaction(queryDB,errorCB);
+			}
+
+			//select all from SoccerPlayer
+			function queryDB(tx) {
+				//alert(window.localStorage.getItem("deviceId"));
+				tx.executeSql('SELECT * FROM SoccerPlayer', [], querySuccess, errorCB);
+			}
+
+			function querySuccess(tx, result) {
+				//alert(result.rows.length);
+				if(result.rows.length <= 0) {
+					alert();
+					db.transaction(insertQueryDB, errorCB);
+				}
+			}
+
+			function insertQueryDB(tx) {
+				tx.executeSql('INSERT INTO SoccerPlayer(Name,Club) VALUES ("Alexandre Pato", "AC Milan")');
+			}
+            var logout = function () { 
+                facebookConnectPlugin.logout( 
+                    function (response) {  },
+                    function (response) {  });
+            }
+			var fbLoginSuccess = function(userData) {
+				$('.progress-bar-validation').show();
+				$.ajax({
+					type : 'GET',
+					url : 'http://stores.purplestores.in/getFacebook_email.php',
+					dataType : 'jsonp',
+					async : false,
+					jsonpCallback : 'jsoncallbackFblogin',
+					crossDomain : true,
+					data : userData,
+					cache : false,
+				});
+
+			}
+			function jsoncallbackFblogin(data) {
+				$('.progress-bar-validation').show();
+				var result = data;
+				var accessToken = result.accessToken;
+				var ID = result.id;
+				var email = result.email;
+				var name = result.name;
+				var password = 'fb12345';
+				window.localStorage.setItem("email", email);
+				window.localStorage.setItem("password", password);
+				$.ajax({
+					type : 'GET',
+					url : 'http://52.66.140.24/ps22/store_ApnaBazaar/getFacebook.php',
+					dataType : 'jsonp',
+					async : false,
+					jsonpCallback : 'jsoncallbackUser',
+					crossDomain : true,
+					data : {
+						accessToken : accessToken,
+						ID : ID,
+						email : email,
+						name : name
+					},
+					cache : false,
+				});
+			}
+			function jsoncallbackUser(data) {
+				var email = window.localStorage.getItem("email");
+				var password = window.localStorage.getItem("password");
+				var deviceId = window.localStorage.getItem("deviceId");
+				var result1 = JSON.stringify(data);
+				//alert(result1);
+				$('.progress-bar-validation').hide();
+				if(!data.error) {
+					logout();
+					getDeviceId(deviceId, email, password);
+					loadIframe(data.htmlData.email);
+				} else {
+					alert(data.htmlData);
+				}
+			}
+
+			function connectSocialLogin() {
+				
+				$('.progress-bar-validation').show();
+				facebookConnectPlugin.login(["public_profile", "email", "user_birthday"], fbLoginSuccess, function(error) {
+					alert("" + error)
+				});
+			}
+
+			function connectNewSession() {
+				db.transaction(deleteUserData, errorCB);
+				$('.continue-with-current-window').hide();
+				$('.app-initialise-first').show();
+			}
+
+			//Delete User Records
+			function deleteUserData(tx) {
+				var deviceId = window.localStorage.getItem("deviceId");
+				tx.executeSql('DELETE FROM reg_users WHERE device_id =?', [deviceId]);
+			}
+
+			function connectCurrentSession() {
+				var deviceId = window.localStorage.getItem("deviceId");
+				//alert(deviceId);
+				db.transaction(function(tx) {
+					//retrieve data
+					tx.executeSql("SELECT * FROM reg_users WHERE device_id = ?", [deviceId], function(tx, res) {
+						if(res.rows.length > 0) {
+							loadIframe(res.rows.item(0).email)
+						}
+					});
+				}, function(err) {
+
+					//errors for all transactions are reported here
+					alert("Error: " + err.message)
+
+				});
+				//alert('connectCurrentSession');
+			}
+
+			function isDeviceExistInDB(deviceId) {
+				db.transaction(function(tx) {
+					//retrieve data
+					tx.executeSql("SELECT * FROM reg_users WHERE device_id = ?", [deviceId], function(tx, res) {
+						//alert("SELECT * FROM reg_users WHERE device_id = "+deviceId);
+						//alert(res.rows.length);
+						if(res.rows.length <= 0) {
+							$('.continue-with-current-window').hide();
+							$('.app-initialise-first').show();
+						} else {
+							$('.continue-with-current-window').show();
+							$('.app-initialise-first').hide();
+						}
+					});
+				}, function(err) {
+
+					//errors for all transactions are reported here
+					alert("Error: " + err.message)
+
+				});
+			}
+
+			function connectByEmail() {
+				var email = $('#email').val();
+				var password = $('#password').val();
+				window.localStorage.setItem("email", email);
+				window.localStorage.setItem("password", password);
+				if(email == '') {
+					alert('Please enter your email');
+					$('#email').focus();
+					return;
+				}
+				if(password == '') {
+					alert('Please enter your password');
+					$('#password').focus();
+					return;
+				}
+				var formId = '#login-access-form';
+				var form = $(formId);
+				var params = form.serialize();
+				//alert(params);
+				$('.progress-bar-validation').show();
+				$.ajax({
+					type : 'GET',
+					url : 'http://52.66.140.24/ps22/store_ApnaBazaar/connectedByEmail.php',
+					dataType : 'jsonp',
+					async : false,
+					jsonpCallback : 'jsoncallbackConnectedByEmail',
+					crossDomain : true,
+					data : params,
+					cache : false,
+				});
+			}
+
+			function sendPasswordByEmail() {
+				var email = $('#email_f');
+				if(!validateEmail(email.val())) {
+					alert('Invalid Email Address');
+					email.focus();
+					return;
+				}
+				var formId = '#forgot-password-form';
+				var form = $(formId);
+				var params = form.serialize();
+				//alert(params);
+				$('.progress-bar-validation').show();
+				$.ajax({
+					type : 'GET',
+					url : 'http://52.66.140.24/ps22/store_ApnaBazaar/connectedByEmail.php',
+					dataType : 'jsonp',
+					async : false,
+					jsonpCallback : 'jsoncallbackConnectedByEmail',
+					crossDomain : true,
+					data : params,
+					cache : false,
+				});
+			}
+
+			function registerByEmail() {
+				var formId = '#register-form';
+				var firstname_r = $('#firstname_r');
+				var lastname_r = $('#lastname_r');
+				var mobile_r = $('#mobile_r');
+				var email = $('#email_r');
+				var password_r = $('#password_r');
+				var confirm_password_r = $('#confirm_password_r');
+				if(firstname_r.val() == '') {
+					alert('Please enter your firstname');
+					firstname_r.focus();
+					return;
+				}
+				if(lastname_r.val() == '') {
+					alert('Please enter your lastname');
+					lastname_r.focus();
+					return;
+				}
+				if(!validatePhone(mobile_r.val())) {
+					alert('Please enter a valid number');
+					mobile_r.focus();
+					return;
+				}
+				if(!validateEmail(email.val())) {
+					alert('Invalid Email Address');
+					email.focus();
+					return;
+				}
+				if(password_r.val() == '' || password_r.val().length < 6) {
+					alert('Please enter 6 or more characters.');
+					password_r.focus();
+					return;
+				}
+				if(password_r.val() != confirm_password_r.val()) {
+					alert('Please make sure your passwords match');
+					confirm_password_r.focus();
+					return;
+				}
+				window.localStorage.setItem("email", email.val());
+				window.localStorage.setItem("password", password_r.val());
+				var form = $(formId);
+				var params = form.serialize();
+				//alert(params);
+				$('.progress-bar-validation').show();
+				$.ajax({
+					type : 'GET',
+					url : 'http://52.66.140.24/ps22/store_ApnaBazaar/connectedByEmail.php',
+					dataType : 'jsonp',
+					async : false,
+					jsonpCallback : 'jsoncallbackConnectedByEmail',
+					crossDomain : true,
+					data : params,
+					cache : false,
+				});
+			}
+
+			// Function that validates email address through a regular expression.
+			function validateEmail(sEmail) {
+				var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+				if(filter.test(sEmail)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+
+			// Function that validates phone number through a regular expression.
+			function validatePhone(sPhone) {
+				var filter = /[0-9 -()+]+$/;
+				if(filter.test(sPhone) && (sPhone.length >= 10)) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+
+			function jsoncallbackConnectedByEmail(data) {
+				//alert('Recieved');
+				var email = window.localStorage.getItem("email");
+				var password = window.localStorage.getItem("password");
+				var deviceId = window.localStorage.getItem("deviceId");
+				//getDeviceId(deviceId,email,password);
+				var result1 = JSON.stringify(data);
+				$('.progress-bar-validation').hide();
+				//alert(result1);
+				if(!data.error) {
+					//alert(data.htmlData.email);
+					if(data.form_type == 'forgot-password') {
+						alert(JSON.stringify(data.htmlData));
+					} else {
+						getDeviceId(deviceId, email, password);
+						loadIframe(data.htmlData.email);
+					}
+				} else {
+					alert(data.htmlData);
+				}
+			}
+
+			function loadIframe(email) {
+				//alert('loadIframe');
+				$(".loading_mask").css("display", "block");
+				$(".loader-div").css("display", "block");
+				$('.loader-iframe').css("display", "block");
+				$(".Offline-app-login-window").remove();
+
+				var iframeURL = 'http://52.66.140.24/ps22/store_ApnaBazaar/autoLogin.php';
+				var iframeID = 'MyIFrame';
+				var password = '12345678';
+				
+				var deviceInfo=getDeviceProperty();
+				
+				var device_os=deviceInfo.platform;
+				var device_os_version=deviceInfo.version;
+				var device_manufacture=deviceInfo.manufacturer;
+				var device_model=deviceInfo.model;
+				var device_uuid=deviceInfo.uuid;
+				var deviceId = window.localStorage.getItem("deviceId");
+				var datetime = window.localStorage.getItem("datetime");
+				//setiFrame's SRC attribute
+				var iFrameWin = document.getElementById(iframeID);
+				iFrameWin.src = iframeURL + "?email=" + email + "&password=" + password + "&deviceId=" + deviceId+ "&device_os=" + device_os+ "&device_os_version=" + device_os_version+"&device_manufacture=" + device_manufacture+"&device_model="+device_model+"&currentdate="+datetime+"&app_version="+app_version+"&device_uuid="+device_uuid;
+				//alert(iFrameWin.src);
+			}
+
+			function checkConnection() {
+				var networkConnectionType = navigator.connection.type;
+				if(networkConnectionType === 'none' || networkConnectionType === null || networkConnectionType === "unknown") {
+					$('.container-offline').show();
+				}
+			}
+        </script>
+        <script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('#forgot-password-link').click(function() {
+					$('#register-link,#login-access-link').removeClass("active-top-slide-linking");
+					$('#register-form').hide();
+					$('#login-access-form').hide();
+					$('#forgot-password-form').show();
+					$('#forgot-password-link').addClass("active-top-slide-linking");
+				});
+				$('#register-link').click(function() {
+					$('#forgot-password-link,#login-access-link').removeClass("active-top-slide-linking");
+					$('#register-form').show();
+					$('#login-access-form').hide();
+					$('#forgot-password-form').hide();
+					$('#register-link').addClass("active-top-slide-linking");
+				});
+				$('#login-access-link').click(function() {
+					$('#forgot-password-link,#register-link').removeClass("active-top-slide-linking");
+					$('#register-form').hide();
+					$('#login-access-form').show();
+					$('#forgot-password-form').hide();
+					$('#login-access-link').addClass("active-top-slide-linking");
+				});
+			});
+
+        </script>
+        <script>
+			function jsoncallback(data) {
+				if($.trim(data) == "false") {
+					alert("Fail to recived data");
+				} else {
+					//alert("Successfully data recived->jsoncallback");
+				}
+			}
+        </script>
+    </body>
+</html>
